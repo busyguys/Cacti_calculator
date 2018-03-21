@@ -19,8 +19,9 @@ def make_xml_2(start, end):
 
 def make_xml(ip_name, start=0, end=0):
     start_point = "/usr/local/rrdtool/bin/rrdtool xport --start " + str(start) + " --end " + str(end)
+    
     if(ip_name=="l1"):
-        print "L1!!!!"
+#        print "L1!!!!"
         l1_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game-new_traffic_in_20122.rrd':'traffic_in':AVERAGE"
         l1_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-n7k-2-game-new_traffic_in_20502.rrd':'traffic_in':AVERAGE"
         l1_3 = " CDEF:c='a,b,+'"
@@ -28,8 +29,9 @@ def make_xml(ip_name, start=0, end=0):
         l1_5 = " XPORT:result:'Result is '"
 #        print start_point + l1_1 + l1_2 + l1_3 + l1_4 + l1_5
         args = start_point + l1_1 + l1_2 + l1_3 + l1_4 + l1_5
+        
     elif(ip_name=="l2"):
-        print "L2!!!!"
+#        print "L2!!!!"
         l2_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game-new_traffic_in_20124.rrd':'traffic_in':AVERAGE"
         l2_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-n7k-2-game-new_traffic_in_20504.rrd':'traffic_in':AVERAGE"
         l2_3 = " CDEF:c='a,b,+'"
@@ -37,8 +39,9 @@ def make_xml(ip_name, start=0, end=0):
         l2_5 = " XPORT:result:'Result is '"
 #        print start_point + l2_1 + l2_2 + l2_3 + l2_4 + l2_5
         args = start_point + l2_1 + l2_2 + l2_3 + l2_4 + l2_5
+        
     elif(ip_name=="aion"):
-        print "AION!!!"
+#        print "AION!!!"
         aion_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game-new_traffic_in_20114.rrd':'traffic_in':AVERAGE"
         aion_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game-new_traffic_in_20117.rrd':'traffic_in':AVERAGE"
         aion_3 = " DEF:c='/usr/local/cacti-0.8.8a/rra/public-n7k-2-game-new_traffic_in_20494.rrd':'traffic_in':AVERAGE"
@@ -48,8 +51,9 @@ def make_xml(ip_name, start=0, end=0):
         aion_7 = " XPORT:result:'Result is '"
 #        print start_point + aion_1 + aion_2 + aion_3 + aion_4 + aion_5 + aion_6 + aion_7
         args = start_point + aion_1 + aion_2 + aion_3 + aion_4 + aion_5 + aion_6 + aion_7
+        
     elif(ip_name=="bs"):
-        print "B&S!!!"
+#        print "B&S!!!"
         bs_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game-new_traffic_in_20107.rrd':'traffic_in':AVERAGE"
         bs_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game-new_traffic_in_20110.rrd':'traffic_in':AVERAGE"
         bs_3 = " DEF:c='/usr/local/cacti-0.8.8a/rra/public-n7k-2-game-new_traffic_in_20487.rrd':'traffic_in':AVERAGE"
@@ -59,8 +63,9 @@ def make_xml(ip_name, start=0, end=0):
         bs_7 = " XPORT:result:'Result is '"
 #        print start_point+bs_1+bs_2+bs_3+bs_4+bs_5+bs_6+bs_7
         args = start_point+bs_1+bs_2+bs_3+bs_4+bs_5+bs_6+bs_7
+        
     elif(ip_name=="lm"):
-        print "LM!!!!"
+#        print "LM!!!!"
         lm_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-n7k-1-game_201511_traffic_in_62895.rrd':'traffic_in':AVERAGE"
         lm_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-n7k-2-game_201511_traffic_in_62513.rrd':'traffic_in':AVERAGE"
         lm_3 = " CDEF:c='a,b,+'"
@@ -68,11 +73,41 @@ def make_xml(ip_name, start=0, end=0):
         lm_5 = " XPORT:result:'Result is '"
 #       print start_point+lm_1+lm_2+lm_3+lm_4+lm_5
         args = start_point+lm_1+lm_2+lm_3+lm_4+lm_5
-    elif(ip_name=="mobile"):
-        print "Mobile!!!!!"
+        
+    elif(ip_name=="plaync"):
+        #print "ETC!!!!!!"
+        nc_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-gpgame-new_traffic_in_41846.rrd':'traffic_in':AVERAGE"
+        nc_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-gpgame-new_traffic_in_41847.rrd':'traffic_in':AVERAGE"
+        nc_3 = " CDEF:c='a,b,+'"
+        nc_4 = " CDEF:result='c,8,*'"
+        nc_5 = " XPORT:result:'Result is '"
+#       print start_point+lm_1+lm_2+lm_3+lm_4+lm_5
+        args = start_point+nc_1+nc_2+nc_3+nc_4+nc_5
         #args =
+        
     elif(ip_name=="web"):
-        print "WEB!!!!!!!"
+        #print "WEB!!!!!!!"
+        web_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-n7k-1-web-new_traffic_in_22360.rrd':'traffic_in':AVERAGE"
+        web_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-n7k-2-web-new_traffic_in_22210.rrd':'traffic_in':AVERAGE"
+        web_3 = " CDEF:c='a,b,+'"
+        web_4 = " CDEF:result='c,8,*'"
+        web_5 = " XPORT:result:'Result is '"
+#       print start_point+lm_1+lm_2+lm_3+lm_4+lm_5
+        args = start_point+web_1+web_2+web_3+web_4+web_5
+
+    elif(ip_name=="talk"):
+        #print "TALK!!!!!"
+        talk_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-nctalk-new_traffic_in_22071.rrd':'traffic_out':AVERAGE"
+        talk_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-nctalk-new_traffic_in_22072.rrd':'traffic_out':AVERAGE"
+        talk_3 = " DEF:c='/usr/local/cacti-0.8.8a/rra/public-nctalk-new_traffic_in_22073.rrd':'traffic_out':AVERAGE"
+        talk_4 = " DEF:d='/usr/local/cacti-0.8.8a/rra/public-nctalk-new_traffic_in_22074.rrd':'traffic_out':AVERAGE"
+        talk_5 = " DEF:e='/usr/local/cacti-0.8.8a/rra/public-nctalk-new_traffic_in_22075.rrd':'traffic_out':AVERAGE"
+        talk_6 = " DEF:f='/usr/local/cacti-0.8.8a/rra/public-nctalk-new_traffic_in_22076.rrd':'traffic_out':AVERAGE"
+        talk_7 = " CDEF:g='a,b,+,c,d,+,+,e,f,+,+'"
+        talk_8 = " CDEF:result='g,8,*'"
+        talk_9 = " XPORT:result:'Result is '"
+        args = start_point + talk_1 + talk_2 + talk_3 + talk_4 + talk_5 + talk_6 + talk_7 + talk_8 + talk_9
+
         #args =
     else:
         print "Input should be L1, L2, AION, BS, LM, MOBILE, WEB"
@@ -113,8 +148,8 @@ def time_convert(time_str):
 
 def time_division(ip_name, t_start, t_end):
     day_array = []
-    print "TIME _ DIVISION - START : " + t_start
-    print "TIME _ DIVISION - END : " + t_end
+#    print "TIME _ DIVISION - START : " + t_start
+#    print "TIME _ DIVISION - END : " + t_end
 
     time_format = "%Y-%m-%d %H:%M:%S"
 
@@ -122,7 +157,7 @@ def time_division(ip_name, t_start, t_end):
         print ("Start time should be earlier than End time")
         return -1
 
-
+    print "=====================" + ip_name + "============================="
     #start = datetime.strptime(t_start, time_format) - version3
     start = datetime.datetime(*time.strptime(t_start, time_format)[:6]) #version2
     start_day = start.day
@@ -142,22 +177,22 @@ def time_division(ip_name, t_start, t_end):
         else:
             start_finish = start.replace(hour=23, minute=59, second=59)
 
-        print a, ": ", start, " | ", start_finish
+#        print a, ": ", start, " | ", start_finish
         xml_result = make_xml(ip_name, time_convert(start), time_convert(start_finish))
         t_value, d_value = xml_check_v2.find_TV(xml_result)
 	
 	temp_max = xml_check_v2.day_max(d_value)
         
-	print "Maximum in one day is :", xml_check_v2.day_max(d_value)
+#	print "Maximum in one day is :", xml_check_v2.day_max(d_value)
         
 	#day_array.append(d_value) #For getting day's average.
 	day_array.append(temp_max)
 
-    print day_array
+#    print day_array
 
     avg_result = xml_check_v2.get_average(day_array)
 
-    print "Average is : ", avg_result
+#    print "Average is : ", avg_result
 
     return 0
 
@@ -166,8 +201,8 @@ if __name__=="__main__":
     print("Make XML from CACTI. Input 'Game, Start, End' (24-hour-clock)")
 
     #ip_name = input("Input Game Name to Extract XML from CACTI (L1, L2, AION, BS, LM ... ) : ")
-    ip_name = raw_input("Input Game Name to Extract XML from CACTI (L1, L2, AION, BS, LM ... ) : ") # -> version2
-    ip_name = ip_name.lower()
+#    ip_name = raw_input("Input Game Name to Extract XML from CACTI (L1, L2, AION, BS, LM ... ) : ") # -> version2
+#    ip_name = ip_name.lower()
     start_date = raw_input("Input From Time(YYYY-MM-DD HH:MM:SS) : ") #version 2
     end_date = raw_input("Input From Time(YYYY-MM-DD HH:MM:SS) : ")
 
@@ -180,8 +215,15 @@ if __name__=="__main__":
     #print ("UTC START TIME:", time_convert(start_date))
     #print ("UTC END TIME:", time_convert(end_date))
 
-    time_division(ip_name, start_date, end_date)
-
+    time_division("l1", start_date, end_date)
+    time_division("l2", start_date, end_date)
+    time_division("lm", start_date, end_date)
+    time_division("aion", start_date, end_date)
+    time_division("bs", start_date, end_date)
+    time_division("talk", start_date, end_date)
+    time_division("web", start_date, end_date)
+    time_division("plaync", start_date, end_date)
+    
     # __array_file = 'rrdtool_xport.txt'
     # a, b = xml_check.find_TV(__array_file)
     #
