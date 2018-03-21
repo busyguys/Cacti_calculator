@@ -18,11 +18,15 @@ def find_TV(array_file):
         v_result = re.search(v_pattern, line)
 
         if(t_result or v_result):
-            t_array.append(re.search(re_pattern, t_result.group()).group())
-            v_array.append(float(re.search(re_pattern, v_result.group()).group()))
+		try:
+	            t_array.append(re.search(re_pattern, t_result.group()).group())
+        	    v_array.append(float(re.search(re_pattern, v_result.group()).group()))
+		except:
+		    t_array.append(0)
+		    v_array.append(0)
              #print(a, ': ' + line + "Correct!")
-    print t_array
-    print v_array
+#    print t_array
+#    print v_array
 
 
     return (t_array, v_array)
@@ -67,8 +71,11 @@ def day_max(arrayfile):
     return day_
 
 def get_average(arrayfile):
+#   print sum(arrayfile)
+#    print len(arrayfile)
     avg_result = sum(arrayfile) / float(len(arrayfile))
     return avg_result
+    #return 0
 
 # __array_file = 'rrdtool_xport.txt'
 # a, b = find_TV(__array_file)

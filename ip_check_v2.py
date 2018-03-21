@@ -67,17 +67,15 @@ def make_xml(ip_name, start=0, end=0):
     else:
         print "Input should be L1, L2, AION, BS, LM, MOBILE, WEB"
 
-    return 0
     # args = start_point + " DEF:test='/usr/local/cacti-0.8.8a/rra/10lan-testnw-01_traffic_in_82726.rrd':'traffic_in':AVERAGE CDEF:test2='test,8,*' XPORT:test2:'test is '"
-    # seperator = ','
-    # seperator.join(args)
-    # args = shlex.split(args)
-    # #
-    # output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
+    seperator = ','
+    seperator.join(args)
+    args = shlex.split(args)
     #
-    # return output
-    # #return args #-> TEST
+    output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
 
+    return output
+    #return args #-> TEST
 
 print "Make XML from CACTI. Input 'Game, Start, End' (24-hour-clock)"
 

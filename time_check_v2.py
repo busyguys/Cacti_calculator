@@ -26,7 +26,7 @@ def make_xml(ip_name, start=0, end=0):
         l1_3 = " CDEF:c='a,b,+'"
         l1_4 = " CDEF:result='c,8,*'"
         l1_5 = " XPORT:result:'Result is '"
-        print start_point + l1_1 + l1_2 + l1_3 + l1_4 + l1_5
+#        print start_point + l1_1 + l1_2 + l1_3 + l1_4 + l1_5
         args = start_point + l1_1 + l1_2 + l1_3 + l1_4 + l1_5
     elif(ip_name=="l2"):
         print "L2!!!!"
@@ -35,7 +35,7 @@ def make_xml(ip_name, start=0, end=0):
         l2_3 = " CDEF:c='a,b,+'"
         l2_4 = " CDEF:result='c,8,*'"
         l2_5 = " XPORT:result:'Result is '"
-        print start_point + l2_1 + l2_2 + l2_3 + l2_4 + l2_5
+#        print start_point + l2_1 + l2_2 + l2_3 + l2_4 + l2_5
         args = start_point + l2_1 + l2_2 + l2_3 + l2_4 + l2_5
     elif(ip_name=="aion"):
         print "AION!!!"
@@ -46,7 +46,7 @@ def make_xml(ip_name, start=0, end=0):
         aion_5 = " CDEF:e='a,b,+,c,d,+,+'"
         aion_6 = " CDEF:result='e,8,*'"
         aion_7 = " XPORT:result:'Result is '"
-        print start_point + aion_1 + aion_2 + aion_3 + aion_4 + aion_5 + aion_6 + aion_7
+#        print start_point + aion_1 + aion_2 + aion_3 + aion_4 + aion_5 + aion_6 + aion_7
         args = start_point + aion_1 + aion_2 + aion_3 + aion_4 + aion_5 + aion_6 + aion_7
     elif(ip_name=="bs"):
         print "B&S!!!"
@@ -57,7 +57,7 @@ def make_xml(ip_name, start=0, end=0):
         bs_5 = " CDEF:e='a,b,+,c,d,+,+'"
         bs_6 = " CDEF:result='e,8,*'"
         bs_7 = " XPORT:result:'Result is '"
-        print start_point+bs_1+bs_2+bs_3+bs_4+bs_5+bs_6+bs_7
+#        print start_point+bs_1+bs_2+bs_3+bs_4+bs_5+bs_6+bs_7
         args = start_point+bs_1+bs_2+bs_3+bs_4+bs_5+bs_6+bs_7
     elif(ip_name=="lm"):
         print "LM!!!!"
@@ -66,7 +66,7 @@ def make_xml(ip_name, start=0, end=0):
         lm_3 = " CDEF:c='a,b,+'"
         lm_4 = " CDEF:result='c,8,*'"
         lm_5 = " XPORT:result:'Result is '"
-        print start_point+lm_1+lm_2+lm_3+lm_4+lm_5
+#       print start_point+lm_1+lm_2+lm_3+lm_4+lm_5
         args = start_point+lm_1+lm_2+lm_3+lm_4+lm_5
     elif(ip_name=="mobile"):
         print "Mobile!!!!!"
@@ -77,7 +77,7 @@ def make_xml(ip_name, start=0, end=0):
     else:
         print "Input should be L1, L2, AION, BS, LM, MOBILE, WEB"
 
-    args = start_point + " DEF:test='/usr/local/cacti-0.8.8a/rra/10lan-testnw-01_traffic_in_82726.rrd':'traffic_in':AVERAGE CDEF:test2='test,8,*' XPORT:test2:'test is '"
+    # args = start_point + " DEF:test='/usr/local/cacti-0.8.8a/rra/10lan-testnw-01_traffic_in_82726.rrd':'traffic_in':AVERAGE CDEF:test2='test,8,*' XPORT:test2:'test is '"
     seperator = ','
     seperator.join(args)
     args = shlex.split(args)
@@ -85,8 +85,7 @@ def make_xml(ip_name, start=0, end=0):
     output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
 
     return output
-
-    #return 0
+#    return 0
 
 def time_convert(time_str):
 
@@ -146,10 +145,18 @@ def time_division(ip_name, t_start, t_end):
         print a, ": ", start, " | ", start_finish
         xml_result = make_xml(ip_name, time_convert(start), time_convert(start_finish))
         t_value, d_value = xml_check_v2.find_TV(xml_result)
-        print "Maximum in one day is :", xml_check_v2.day_max(d_value)
-        day_array.append(d_value) #For getting day's average.
+	
+	temp_max = xml_check_v2.day_max(d_value)
+        
+	print "Maximum in one day is :", xml_check_v2.day_max(d_value)
+        
+	#day_array.append(d_value) #For getting day's average.
+	day_array.append(temp_max)
+
+    print day_array
 
     avg_result = xml_check_v2.get_average(day_array)
+
     print "Average is : ", avg_result
 
     return 0
