@@ -67,7 +67,7 @@ def make_xml(ip_name, start=0, end=0):
         lm_4 = " CDEF:result='c,8,*'"
         lm_5 = " XPORT:result:'Result is '"
         print start_point+lm_1+lm_2+lm_3+lm_4+lm_5
-        args = start_point+lm_1+lm_2+lm_3+lm_4+lm_5+lm_6
+        args = start_point+lm_1+lm_2+lm_3+lm_4+lm_5
     elif(ip_name=="mobile"):
         print "Mobile!!!!!"
         #args =
@@ -77,15 +77,16 @@ def make_xml(ip_name, start=0, end=0):
     else:
         print "Input should be L1, L2, AION, BS, LM, MOBILE, WEB"
 
-    # args = start_point + " DEF:test='/usr/local/cacti-0.8.8a/rra/10lan-testnw-01_traffic_in_82726.rrd':'traffic_in':AVERAGE CDEF:test2='test,8,*' XPORT:test2:'test is '"
-    # seperator = ','
-    # seperator.join(args)
-    # args = shlex.split(args)
+    args = start_point + " DEF:test='/usr/local/cacti-0.8.8a/rra/10lan-testnw-01_traffic_in_82726.rrd':'traffic_in':AVERAGE CDEF:test2='test,8,*' XPORT:test2:'test is '"
+    seperator = ','
+    seperator.join(args)
+    args = shlex.split(args)
     # #
-    # output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
+    output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
 
-#    return output
-    return 0
+    return output
+
+    #return 0
 
 def time_convert(time_str):
 
@@ -111,7 +112,7 @@ def time_convert(time_str):
 
     return utc_time
 
-def time_division(t_start, t_end='2018-03-31 13:00:00'):
+def time_division(ip_name, t_start, t_end):
     day_array = []
     print "TIME _ DIVISION - START : " + t_start
     print "TIME _ DIVISION - END : " + t_end
@@ -143,7 +144,7 @@ def time_division(t_start, t_end='2018-03-31 13:00:00'):
             start_finish = start.replace(hour=23, minute=59, second=59)
 
         print a, ": ", start, " | ", start_finish
-        xml_result = make_xml(time_convert(start), time_convert(start_finish))
+        xml_result = make_xml(ip_name, time_convert(start), time_convert(start_finish))
         t_value, d_value = xml_check_v2.find_TV(xml_result)
         print "Maximum in one day is :", xml_check_v2.day_max(d_value)
         day_array.append(d_value) #For getting day's average.
@@ -154,7 +155,7 @@ def time_division(t_start, t_end='2018-03-31 13:00:00'):
     return 0
 
 
-if __init__=="__main__":
+if __name__=="__main__":
     print("Make XML from CACTI. Input 'Game, Start, End' (24-hour-clock)")
 
     #ip_name = input("Input Game Name to Extract XML from CACTI (L1, L2, AION, BS, LM ... ) : ")
@@ -172,7 +173,7 @@ if __init__=="__main__":
     #print ("UTC START TIME:", time_convert(start_date))
     #print ("UTC END TIME:", time_convert(end_date))
 
-    time_division(start_date, end_date)
+    time_division(ip_name, start_date, end_date)
 
     # __array_file = 'rrdtool_xport.txt'
     # a, b = xml_check.find_TV(__array_file)
