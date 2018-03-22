@@ -198,13 +198,13 @@ def time_division(ip_name, t_start, t_end):
 
 
 if __name__=="__main__":
-    print("Make XML from CACTI. Input 'Game, Start, End' (24-hour-clock)")
+    print("Make XML from CACTI. Input 'Start, End' (24-hour-clock)")
 
     #ip_name = input("Input Game Name to Extract XML from CACTI (L1, L2, AION, BS, LM ... ) : ")
 #    ip_name = raw_input("Input Game Name to Extract XML from CACTI (L1, L2, AION, BS, LM ... ) : ") # -> version2
 #    ip_name = ip_name.lower()
-    start_date = raw_input("Input From Time(YYYY-MM-DD HH:MM:SS) : ") #version 2
-    end_date = raw_input("Input From Time(YYYY-MM-DD HH:MM:SS) : ")
+    start_date = raw_input("Input START Time(YYYY-MM-DD HH:MM:SS) : ") #version 2
+    end_date = raw_input("Input END Time(YYYY-MM-DD HH:MM:SS) : ")
 
     # start_date = input("Input From Time(YYYY-MM-DD HH:MM:SS) : ") - version 3
     # end_date = input("Input From Time(YYYY-MM-DD HH:MM:SS) : ")
@@ -224,6 +224,7 @@ if __name__=="__main__":
     time_division("web", start_date, end_date)
     time_division("plaync", start_date, end_date)
     
+    print "\n\n\n\n"
     # __array_file = 'rrdtool_xport.txt'
     # a, b = xml_check.find_TV(__array_file)
     #

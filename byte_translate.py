@@ -19,6 +19,8 @@ if __name__=="__main__":
             print a/giga, "GB"
         elif(a>mega):
             print a/mega, "MB"
+
+            dlxo
         elif(a>kilo):
             print a/kilo, "KB"
         else:
