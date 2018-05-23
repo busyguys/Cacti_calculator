@@ -74,6 +74,7 @@ def get_average(arrayfile):
 #   print sum(arrayfile)
 #    print len(arrayfile)
     avg_result = sum(arrayfile) / float(len(arrayfile))
+
     giga=1000000000
     mega=1049000
     kilo=1000

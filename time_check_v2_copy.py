@@ -109,9 +109,24 @@ def make_xml(ip_name, start=0, end=0):
         args = start_point + talk_1 + talk_2 + talk_3 + talk_4 + talk_5 + talk_6 + talk_7 + talk_8 + talk_9
 
         #args =
-#	elif(ip_name=="rk"):
-#		print "Lineage RK!"
 
+    elif(ip_name=="rk"):
+        rk_1 = " DEF:a='/usr/local/cacti-0.8.8a/rra/public-lm-01_traffic_in_82648.rrd':'traffic_in':AVERAGE"
+        rk_2 = " DEF:b='/usr/local/cacti-0.8.8a/rra/public-lm-02_traffic_in_82684.rrd':'traffic_in':AVERAGE"
+        rk_3 = " DEF:c='/usr/local/cacti-0.8.8a/rra/public-lm-01_traffic_in_82649.rrd':'traffic_in':AVERAGE"
+        rk_4 = " DEF:d='/usr/local/cacti-0.8.8a/rra/public-lm-02_traffic_in_82685.rrd':'traffic_in':AVERAGE"
+        rk_5 = " DEF:e='/usr/local/cacti-0.8.8a/rra/public-lm-01_traffic_in_82650.rrd':'traffic_in':AVERAGE"
+        rk_6 = " DEF:f='/usr/local/cacti-0.8.8a/rra/public-lm-02_traffic_in_82686.rrd':'traffic_in':AVERAGE"
+        rk_7 = " DEF:g='/usr/local/cacti-0.8.8a/rra/public-lm-01_traffic_in_82651.rrd':'traffic_in':AVERAGE"
+        rk_8 = " DEF:h='/usr/local/cacti-0.8.8a/rra/public-lm-02_traffic_in_82687.rrd':'traffic_in':AVERAGE"
+        rk_9 = " DEF:i='/usr/local/cacti-0.8.8a/rra/public-lm-01_traffic_in_82652.rrd':'traffic_in':AVERAGE"
+        rk_10 = " DEF:j='/usr/local/cacti-0.8.8a/rra/public-lm-02_traffic_in_82688.rrd':'traffic_in':AVERAGE"
+        rk_11 = " DEF:k='/usr/local/cacti-0.8.8a/rra/public-lm-01_traffic_in_82653.rrd':'traffic_in':AVERAGE"
+        rk_12 = " DEF:l='/usr/local/cacti-0.8.8a/rra/public-lm-02_traffic_in_82689.rrd':'traffic_in':AVERAGE"
+        rk_13 = " CDEF:m='a,b,+,c,+,d,+,e,+,f,+,g,+,h,+,i,+,j,+,k,+,l,+'"
+        rk_14 = " CDEF:result='m,8,*'"
+        rk_15 = " XPORT:result:'Result is '"
+        args = start_point + rk_1 + rk_2 + rk_3 + rk_4 + rk_5 + rk_6 + rk_7 + rk_8 + rk_9 + rk_10 + rk_11 + rk_12 + rk_13 + rk_14 + rk_15
 
     else:
         print "Input should be L1, L2, AION, BS, LM, MOBILE, WEB, RK"
@@ -194,11 +209,11 @@ def time_division(ip_name, t_start, t_end):
 
 #    print day_array
 
-    avg_result, avg_result2 = xml_check_v2.get_average(day_array)
+    avg_result = xml_check_v2.get_average(day_array)
 
 #    print "Average is : ", avg_result
 
-    return avg_result, avg_result2
+    return avg_result
 
 
 if __name__=="__main__":
@@ -218,22 +233,24 @@ if __name__=="__main__":
 
     #print ("UTC START TIME:", time_convert(start_date))
     #print ("UTC END TIME:", time_convert(end_date))
-	maximum=0
 
-    a, a_1 = time_division("l1", start_date, end_date)
-    b, b_1 = time_division("l2", start_date, end_date)
-    c, c_1 = time_division("lm", start_date, end_date)
-    d, d_1 = time_division("aion", start_date, end_date)
-    e, e_1 = time_division("bs", start_date, end_date)
-    f, f_1 = time_division("talk", start_date, end_date)
-    g, g_1 = time_division("web", start_date, end_date)
-    h, h_1 = time_division("plaync", start_date, end_date)
-#	time_division("rk", start_date, end_date) # For Lineage RK
-
+    a=time_division("l1", start_date, end_date)
+    b=time_division("l2", start_date, end_date)
+    c=time_division("lm", start_date, end_date)
+    d=time_division("aion", start_date, end_date)
+    e=time_division("bs", start_date, end_date)
+    f=time_division("talk", start_date, end_date)
+    g=time_division("web", start_date, end_date)
+    h=time_division("plaync", start_date, end_date)
+    i=time_division("rk", start_date, end_date) # For Lineage RK
+    
+    maximum = float(a)+float(b)+float(c)+float(d)+float(e)+float(f)+float(g)+float(h)+float(i)
 
     print "\n\n\n\n"
-	maximum = a_1+b_1+c_1+d_1+e_1+f_1+g_1+h_1
-	print maximum
+    giga=1000000000
+    print maximum/giga, "GB"
+
+#print maximum
     # __array_file = 'rrdtool_xport.txt'
     # a, b = xml_check.find_TV(__array_file)
     #
